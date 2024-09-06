@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulários</title>
+    </head>
+
+    <body>
+        <form>
+            <h1>Formulário de Contato</h1>
+
+            <div id="nome">
+                <label for="nome">Nome Completo: </label>
+                <input type="text" name="nome" placeholder="Digite seu nome completo" id="nome" maxlength="3"/>
+
+            </div>
+            
+            <div id="email">
+                <label for="email">Email: </label>
+                <input type="email" name="email" placeholder="Digite seu email" id="email" maxlength="10"/>  
+            </div>
+
+            <div id="telefone">
+                <label for="telefone">Telefone: </label>
+                <input type="tel" name="telefone" placeholder="Digite seu telefone" id="telefone" maxlength="10"/>
+            </div>
+
+            <div id="sexo">
+                <label for="sexo">Sexo: </label>
+                <br/>
+                <input type="radio" name="sexo" value="masculino" id="masculino"/>
+                <label for="masculino">Masculino</label>
+                <input type="radio" name="sexo" value="feminino" id="feminino"/>
+                <label for="feminino">Feminino</label>
+
+            </div>
+
+            <div id="interesse">
+                <label for="areainteresse">Área de Interesse: </label>
+                <select>
+                    <option value="desenvolvimento">Desenvolvimento</option>
+                    <option value="computacao">Computação</option>
+                    <option value="ml">Machine Learning</option>
+                    <option value="python">Python</option>
+                </select>
+            </div>
+
+            <div id="contato">
+                <label for="contato">Preferências de Contato:</label>
+
+                <input type="checkbox" name="linguagens" value="html" id="html"/>
+                <label for="email">Email</label>
+                <input type="checkbox" name="linguagens" value="css" id="css"/>
+                <label for="telefone">Telefone</label>
+                <input type="checkbox" name="linguagens" value="js" id="js"/>
+                <label for="css">CSS</label>
+            </div>
+
+            <div id="texto">
+                <label for="mensagem"><p>Mensagem</p></label>
+                <textarea name="mensagem" id="mensagem" cols="30" rows="5" placeholder="Digite aqui sua mensagem"></textarea>
+            </div>
+        </form>
+
+        <div id="buttonEnviar">
+            <input type="submit" value="Enviar">
+        </div>
+
+    </body>
+
+</html>
