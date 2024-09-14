@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.info img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.header-info {
+    flex: 1;
+}
+
+.info h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.info p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+div {
+    margin-bottom: 25px;
+}
+
+div h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #555;
+    padding-bottom: 5px;
+}
+
+.exp, .educacao, .habilidades, .contato {
+    margin-bottom: 20px;
+}
+
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    font-size: 1.1em;
+    color: #555;
+    padding: 5px 0;
+}
+
+.rodape {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #ddd;
+}
+
+.contato a {
+    color: #0073b1;
+    text-decoration: none;
+}
+
+.contato a:hover {
+    text-decoration: underline;
+}
