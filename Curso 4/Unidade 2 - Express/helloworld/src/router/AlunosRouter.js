@@ -1,8 +1,21 @@
 import { Router } from "express";
 import { AlunosValidator } from "../validators/AlunoValidator.js";
+import * as AlunosController from "../controller/AlunosController.js"
 
 const router = Router();
 
+router.get('/', AlunosController.listarAlunos)
+
+router.get('/:id', AlunosController.buscarAlunoPorId)
+
+router.post('/', AlunosController.criarAluno)
+
+router.put('/:id', AlunosController.atualizarAluno)
+
+router.delete('/:id', AlunosController.deletarAluno)
+
+export default router;
+/*
 router.get('/', (reg, res) => {
     res.send('Página de Alunos');
 })
@@ -36,7 +49,8 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    res.send("Aluno Deletado")
+    res.send("Aluno Deletado");
 })
 
 export default router;
+*/
