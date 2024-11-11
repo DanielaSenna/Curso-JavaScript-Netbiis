@@ -1,0 +1,83 @@
+<!--O DOM (Document Object Model) é uma interface de programação que permite acessar e manipular o conteúdo e a estrutura de um documento HTML ou XML usando linguagens de programação como JavaScript. Ele representa a página de forma hierárquica, criando uma estrutura em árvore onde cada elemento, atributo e pedaço de texto no HTML é considerado um nó (node).
+
+Imagine um HTML simples:
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Bem-vindo!</h1>
+    <p id="paragrafo">Esse é um parágrafo.</p>
+  </body>
+</html>
+
+No DOM, ele será representado como:
+
+Document
+ └── html
+      └── body
+           ├── h1
+           └── p (id="paragrafo")
+
+Manipulação do DOM com JavaScript
+Usando JavaScript, é possível modificar o DOM. Por exemplo, para mudar o texto do parágrafo com o id="paragrafo":
+
+document.getElementById("paragrafo").textContent = "Texto alterado!";
+
+O DOM é, portanto, a ponte que permite aos desenvolvedores interagir e dinamizar páginas web com facilidade.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+    <style>
+        body{
+            background-color: blue;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 id="titulo" style="color: blue;">Nosso Título</h1>
+    <p class="paragrafo">Nosso Parágrafo</p>
+    <p class="paragrafo">Nosso Parágrafo</p>
+
+    <input type="text" name="nome" placeholder="Digite seu nome">
+
+    <input type="checkbox" name="checkbox" id="checkbox">
+    <label for="checkbox">checkbox</label>
+
+
+    <script>
+        // Selecionando elementos
+        let titulo = document.getElementById("titulo");
+        let paragrafos = document.getElementsByClassName('paragrafo');
+        let paragrafosTag = document.getElementsByTagName('p');
+        let inputs = document.getElementsByName('nome');
+        let querySelectorTitulo = document.querySelector('#titulo');
+        let querySelectorParagrafo = document.querySelectorAll('.paragrafo');
+        console.log(querySelectorTitulo);
+        console.log(querySelectorParagrafo);
+
+        console.log(titulo.innerHTML);
+        console.log(paragrafos[0].innerText);
+
+        console.log(titulo.style.color);
+
+        console.log(inputs[0].placeholder);
+        console.log(inputs[0].name);
+        console.log(inputs.value);
+        console.log(checkbox.checked);
+
+        // Modificando elementos
+        titulo.innerHTML = 'Novo Titulo';
+        paragrafos[0].innerText += ': Alterado';
+        inputs[0].value = 'Valor Padrão';
+        checkbox.checkbox = true;
+
+    </script>
+
+</body>
+</html>

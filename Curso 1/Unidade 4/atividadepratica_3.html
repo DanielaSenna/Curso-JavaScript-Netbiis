@@ -1,0 +1,62 @@
+<!--Crie um formulário simples (nome, email e botão de enviar) e, ao clicar em "Enviar", o formulário deve desaparecer
+da tela e uma mensagem deve aparecer na tela, dizendo “Formulário enviado com sucesso”, seguido de um botão
+para preencher novamente e a tela ficar igual à do início.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário com Mensagem de Confirmação</title>
+  <style>
+    #mensagemSucesso {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="formulario">
+    <h2>Formulário de Cadastro</h2>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br><br>
+
+    <button onclick="enviarFormulario()">Enviar</button>
+  </div>
+
+  <div id="mensagemSucesso">
+    <p>Formulário enviado com sucesso!</p>
+    <button onclick="preencherNovamente()">Preencher novamente</button>
+  </div>
+
+  <script>
+    function enviarFormulario() {
+      // Captura os valores dos campos de entrada
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+
+      // Exibe os valores no console
+      console.log("Nome:", nome);
+      console.log("Email:", email);
+
+      // Oculta o formulário
+      document.getElementById("formulario").style.display = "none";
+      
+      // Mostra a mensagem de sucesso
+      document.getElementById("mensagemSucesso").style.display = "block";
+    }
+
+    function preencherNovamente() {
+      // Mostra o formulário novamente
+      document.getElementById("formulario").style.display = "block";
+      
+      // Oculta a mensagem de sucesso
+      document.getElementById("mensagemSucesso").style.display = "none";
+      
+      // Limpa os campos do formulário
+      document.getElementById("nome").value = "";
+      document.getElementById("email").value = "";
+    }
+  </script>
+</body>
+</html>

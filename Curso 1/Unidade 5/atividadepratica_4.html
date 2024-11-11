@@ -1,0 +1,26 @@
+<!--Escreva um script que verifique se o valor de uma compra é maior que R$100 e, se for, aplique um desconto de 10%. Caso contrário, não aplique desconto.-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor da Compra</title>
+</head>
+<body>
+    <h3 id="resposta"></h3>
+   
+    <script>
+        function compra() {
+            let valor = parseFloat(prompt("Digite o valor da compra: "));
+            if (valor > 100) {
+                const valorDesconto = valor - (valor * 0.10)
+                document.getElementById("resposta").innerHTML = "Valor da Compra: R$ " + valor.toFixed(2) + "<br>Valor com Desconto: R$ " + valorDesconto.toFixed(2);
+            } else {
+                document.getElementById("resposta").textContent = "O valor da compra não é maior que R$ 100. Não foi possível aplicar desconto.";
+            }
+        }
+        compra();
+
+    </script>
+</body>
+</html>

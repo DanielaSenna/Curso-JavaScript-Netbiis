@@ -1,0 +1,42 @@
+<!--Escreva um script que verifique se uma pessoa pode acessar um site para maiores de idade. O script deve verificar se a idade da pessoa é maior que 18 e se ela concordou com os termos de uso.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação de Acesso</title>
+</head>
+<body>
+  <h2>Verificação de Acesso para Maiores de 18 Anos</h2>
+
+  <label for="idade">Informe sua idade:</label>
+  <input type="number" id="idade" required><br><br>
+
+  <label>
+    <input type="checkbox" id="termos"> Eu concordo com os termos de uso
+  </label><br><br>
+
+  <button onclick="verificarAcesso()">Verificar Acesso</button><br><br>
+
+  <p id="resultado"></p>
+
+  <script>
+    function verificarAcesso() {
+      // Captura os valores da idade e se concordou com os termos
+      const idade = parseInt(document.getElementById("idade").value);
+      const concordouComTermos = document.getElementById("termos").checked;
+
+      // Verifica as condições de acesso
+      if (idade >= 18 && concordouComTermos) {
+        document.getElementById("resultado").innerText = "Acesso permitido. Bem-vindo ao site!";
+        console.log("Acesso permitido: idade >= 18 e concordou com os termos.");
+      } else if (idade < 18) {
+        document.getElementById("resultado").innerText = "Acesso negado. Este site é para maiores de 18 anos.";
+        console.log("Acesso negado: idade < 18.");
+      } else if (!concordouComTermos) {
+        document.getElementById("resultado").innerText = "Acesso negado. Você deve concordar com os termos de uso.";
+        console.log("Acesso negado: não concordou com os termos.");
+      }
+    }
+  </script>
+</body>
+</html>

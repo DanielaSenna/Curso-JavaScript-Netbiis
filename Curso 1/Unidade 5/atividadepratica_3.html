@@ -1,0 +1,25 @@
+<!--Crie um script que receba a nota de um aluno e verifique se ele foi aprovado (nota maior ou igual a 7) ou reprovado.-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota do Aluno</title>
+</head>
+<body>
+    <h3 id="resposta"></h3>
+   
+    <script>
+        function nota() {
+            let num = parseFloat(prompt("Digite sua nota: "));
+            if (num >= 7) {
+                document.getElementById("resposta").textContent = "Você foi APROVADO com nota " + num;
+            } else {
+                document.getElementById("resposta").textContent = "Você foi REPROVADO com nota " + num;
+            }
+        }
+        nota();
+
+    </script>
+</body>
+</html>

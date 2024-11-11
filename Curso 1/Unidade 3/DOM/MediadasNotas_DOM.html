@@ -1,0 +1,56 @@
+<!-- 4. Escrever um programa que leia as 04 notas de um aluno e calcule a sua média. -->
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calcular Média das Notas</title>
+</head>
+<body>
+  <h2>Calcular Média das Notas</h2>
+  <p id="notas"></p>
+  <p id="resultadoMedia"></p> 
+    
+
+  <script>
+    let n1 = parseFloat(prompt("Informe a primeira nota: "))
+    let n2 = parseFloat(prompt("Informe a segunda nota: "))
+    let n3 = parseFloat(prompt("Informe a terceira nota: "))
+    let n4 = parseFloat(prompt("Informe a quarta nota: "))
+
+    // Para quebrar uma linha diretamente no JavaScript usando document.getElementById, você pode adicionar a tag <br> no conteúdo da innerHTML. Isso permite que a linha seja quebrada de acordo com a formatação que você definir no código.
+    document.getElementById("notas").innerHTML = "Nota 1: " + n1.toFixed(2) + "<br>Nota 2: " + n2.toFixed(2) + "<br>Nota 3: " + n3.toFixed(2) + "<br>Nota 4: " + n4.toFixed(2);
+    
+    const media = (n1 + n2 + n3 + n4) / 4;
+    document.getElementById("resultadoMedia").textContent = "Média do Aluno: " + media.toFixed(2);
+  </script>
+</body>
+</html>
+
+<!--O DOM (Document Object Model) é uma interface de programação que permite acessar e manipular o conteúdo e a estrutura de um documento HTML ou XML usando linguagens de programação como JavaScript. Ele representa a página de forma hierárquica, criando uma estrutura em árvore onde cada elemento, atributo e pedaço de texto no HTML é considerado um nó (node).
+
+Imagine um HTML simples:
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Bem-vindo!</h1>
+    <p id="paragrafo">Esse é um parágrafo.</p>
+  </body>
+</html>
+
+No DOM, ele será representado como:
+
+Document
+ └── html
+      └── body
+           ├── h1
+           └── p (id="paragrafo")
+
+Manipulação do DOM com JavaScript
+Usando JavaScript, é possível modificar o DOM. Por exemplo, para mudar o texto do parágrafo com o id="paragrafo":
+
+document.getElementById("paragrafo").textContent = "Texto alterado!";
+
+O DOM é, portanto, a ponte que permite aos desenvolvedores interagir e dinamizar páginas web com facilidade.
+-->

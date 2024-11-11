@@ -1,0 +1,45 @@
+<!--Escreva um programa que leia uma nota (0 a 100) e escreva o conceito associado.
+a. [90,100] “Excelente”
+b. [70,90] “Bom”
+c. [50, 70] “Regular”
+d. [0,50] “Insuficiente”-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Notas</title>
+</head>
+<body>
+    <h3 id="resposta"></h3>
+   
+    <script>
+        function classificarNota() {
+            // Captura o valor da nota
+            let nota = parseInt(prompt("Informe sua nota (0 a 100): "));
+
+            // Define a variável para o conceito
+            let conceito;
+
+            // Verifica as faixas de conceito
+            if (nota >= 90 && nota <= 100) {
+                conceito = "Excelente";
+            } else if (nota >= 70 && nota < 90) {
+                conceito = "Bom";
+            } else if (nota >= 50 && nota < 70) {
+                conceito = "Regular";
+            } else if (nota >= 0 && nota < 50) {
+                conceito = "Insuficiente";
+            } else {
+                conceito = "Nota inválida. Insira um valor entre 0 e 100.";
+            }
+
+            // Exibe o resultado na página
+            document.getElementById("resposta").innerText = "Conceito: " + conceito;
+        }
+        classificarNota();
+
+    </script>
+</body>
+</html>

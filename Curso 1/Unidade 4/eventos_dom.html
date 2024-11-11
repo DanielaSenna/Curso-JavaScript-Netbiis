@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+</head>
+<body>
+    <button id="adicionar" onclick="adicionar()">+</button>
+    <h1 id="valor"></h1>
+    <button id="remover" onclick="remover()">-</button>
+
+    <script>
+        let valor1 = 0
+        let valor2 = document.getElementById('valor')
+        
+        function adicionar(){
+            valor1++
+            valor2.innerText = valor1
+        }
+
+        function remover(){
+            valor1--
+            valor2.innerText = valor1
+        }
+
+    </script>
+</body>
+</html>

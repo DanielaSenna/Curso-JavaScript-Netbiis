@@ -1,0 +1,54 @@
+<!-- 1. Crie uma página que pergunta ao usuário qual a cor que ele quer da página e do background. Mude o estilo da página com base na resposta do usuário. O conteúdo da página vai ser só um h1 com uma mensagem de boas vindas. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha a cor de fundo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20%;
+        }
+        .color-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            margin: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bem-vindo(a)!</h1>
+
+    <div class="color-controls">
+        <label>Digite o nome da cor:</label>
+        <input type="text" id="colorName" placeholder="ex: red">
+        <button id="changeColor">Alterar Cor</button>
+    </div>
+
+    <script>
+        let colorInput = document.getElementById('colorName');
+        let changeColorButton = document.getElementById('changeColor');
+
+        changeColorButton.addEventListener('click', function() {
+            const colorName = colorInput.value;
+            document.body.style.backgroundColor = colorName;
+        });
+    
+    </script>
+
+</body>
+</html>

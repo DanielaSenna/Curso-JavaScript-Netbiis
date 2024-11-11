@@ -1,0 +1,42 @@
+<!--Crie uma página que exiba uma mensagem na tela depois da quantidade de segundos que o usuário escolher.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Mensagem</title>
+</head>
+<body>
+    <h2>Exibição de Mensagem</h2>
+    <p>Escolha o número de segundos para exibir a mensagem:</p>
+    
+    <label for="segundos">Segundos:</label>
+    <input type="number" id="segundos" min="1" placeholder="Digite o número de segundos"><br><br>
+    
+    <button onclick="exibirMensagem()">Exibir Mensagem</button>
+    
+    <div id="mensagem" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <script>
+        function exibirMensagem() {
+            // Limpa qualquer mensagem anterior
+            const mensagemDiv = document.getElementById("mensagem");
+            mensagemDiv.innerText = "";
+
+            // Obtém a quantidade de segundos do input
+            const segundos = Number(document.getElementById("segundos").value);
+
+            // Verifica se a entrada é válida
+            if (isNaN(segundos) || segundos <= 0) {
+                mensagemDiv.innerText = "Por favor, insira um número válido de segundos.";
+                return;
+            }
+
+            // Configura o atraso para exibir a mensagem
+            setTimeout(() => {
+                mensagemDiv.innerText = "A mensagem foi exibida após " + segundos + " segundos!";
+            }, segundos * 1000);
+        }
+    </script>
+</body>
+</html>

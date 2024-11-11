@@ -1,0 +1,23 @@
+<!-- 2. Escrever um programa para uma pizzaria que leia o valor total de uma conta e quantos clientes vão pagá-la. Calcule e informe o valor a ser pago por cada cliente.-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Divisão da Conta</title>
+</head>
+<body>
+  <h2>Dividir Conta da Pizzaria</h2>    
+
+  <script>
+    let valorTotal = parseFloat(prompt("Informe o valor total da conta: "))
+    let numeroClientes = parseFloat(prompt("Quantos clientes vão pagar? "))
+    const valorPorCliente = valorTotal / numeroClientes;
+    
+    document.write("Valor Total da Conta: R$ " + valorTotal.toFixed(2));
+    document.write("<br>Quantidade de Clientes: " + numeroClientes);
+    document.write("<br>Valor por Cliente: R$ " + valorPorCliente.toFixed(2));
+
+  </script>
+</body>
+</html>

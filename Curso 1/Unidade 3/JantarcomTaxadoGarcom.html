@@ -1,0 +1,23 @@
+<!-- 1. Elaborar um programa que leia o valor de um jantar. Calcule e informe o valor da taxa do garçom (10%) e o valor total a ser pago. -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculo do Jantar</title>
+</head>
+<body>
+  <h2>Calcular Jantar com Taxa do Garçom</h2>    
+
+  <script>
+    let valorJantar = parseFloat(prompt("Informe o valor do jantar: "))
+    let taxaGarcom = valorJantar * 0.10;
+    let valorTotal = valorJantar + taxaGarcom;
+
+    document.write("Valor do Jantar: R$ " + valorJantar.toFixed(2));
+    document.write("<br>Taxa do Garçom (10%): R$ " + taxaGarcom.toFixed(2));
+    document.write("<br>Valor Total a ser Pago: R$ " + valorTotal.toFixed(2));
+
+  </script>
+</body>
+</html>

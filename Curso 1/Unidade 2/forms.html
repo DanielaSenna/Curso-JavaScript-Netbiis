@@ -1,0 +1,85 @@
+<!-- 
+O <!DOCTYPE html> é uma declaração que indica ao navegador qual versão do HTML está sendo usada no documento. 
+Essa declaração específica, <!DOCTYPE html>, informa ao navegador que o documento está utilizando HTML5, que é a versão mais recente e amplamente utilizada do HTML. 
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- Lido pelo navegador -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulários</title>
+    </head>
+
+    <!-- Apresentado na tela -->
+    <body>
+        <!-- Formulários -->
+        <form action="#">
+
+            <label for="nome">Nome: </label>
+            <!-- Campo de Texto -->
+            <input type="text" name="nome" placeholder="Nome" id="nome" maxlength="3"/>
+            <br/>
+            <br/>
+            <label for="email">Email: </label>
+            <input type="email" name="email" placeholder="Email" id="email" maxlength="10"/>
+            <br/>
+            <br/>
+            <label for="senha">Senha: </label>
+            <input type="password" name="senha" placeholder="Senha" id="senha" maxlength="10"/>
+            <br/>
+            <br/>
+            <label for="telefone">Telefone: </label>
+            <input type="tel" name="telefone" placeholder="Telefone" id="telefone" maxlength="10"/>
+            <br/>
+            <br/>
+
+            <!-- Input Radio -->
+            <!-- Para selecionar apenas UM o input do tipo radio precisa ter o mesmo name -->
+            <p>Sexo: </p>
+            <input type="radio" name="sexo" value="masculino" id="masculino"/>
+            <label for="masculino">Masculino</label>
+            <input type="radio" name="sexo" value="feminino" id="feminino"/>
+            <label for="feminino">Feminino</label>
+
+            <!-- Input Checkbox -->
+            <p>Linguagens Aprendidas</p>
+            <input type="checkbox" name="linguagens" value="html" id="html"/>
+            <label for="html">HTML</label>
+            <input type="checkbox" name="linguagens" value="css" id="css"/>
+            <label for="css">CSS</label>
+            <input type="checkbox" name="linguagens" value="js" id="js"/>
+            <label for="js">JavaScript</label>
+
+            <!-- Select -->
+            <label for="regiao">Região: </label>
+            <select>
+                <option value="norte">Norte</option>
+                <option value="nordeste">Nordeste</option>
+                <option value="centro-oeste">Centro-Oeste</option>
+                <option value="sul">Sul</option>
+                <option value="sudeste">Sudeste</option>
+            </select>
+            <br/>
+            <br/>
+
+            <!-- Textarea -->
+            <label for="mensagem">
+                <p>Mensagem</p>
+            </label>
+            <textarea 
+                name="mensagem" 
+                id="mensagem"
+                cols="30" 
+                rows="5" 
+                placeholder="Digite aqui sua mensagem">
+            </textarea>
+        </form>
+
+        <!-- Usado para enviar o formulário-->
+        <input type="submit" value="Enviar">
+        <button>Enviar</button>
+
+    </body>
+
+</html>

@@ -1,0 +1,96 @@
+<!-- Vamos criar uma página que traga as principais informações de um
+perfil do Github, como mostra a imagem. Ela irá buscar na API do Github os dados do usuário que for
+digitado no campo de busca e trazer os detalhes dele na página.
+API: https://api.github.com/users/{username}-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca de Perfil no GitHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .profile-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .profile-container img {
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .profile-details {
+      text-align: center;
+    }
+
+    .profile-details h2 {
+      margin-bottom: 10px;
+    }
+
+    .profile-details p {
+      margin: 5px 0;
+    }
+
+    .profile-container.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Busca de Perfil no GitHub</h1>
+
+  <div class="search-container">
+    <input type="text" id="username" placeholder="Digite o nome do usuário no GitHub...">
+    <button id="search-btn">Buscar</button>
+  </div>
+
+  <div class="profile-container " id="profile-container">
+  
+  </div>
+
+  <script type="module" src="script_AtividadePratica.js"></script>
+</body>
+</html>

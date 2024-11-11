@@ -1,0 +1,55 @@
+<!--Crie um script que peça ao usuário para dar uma nota de 1 a 10 e use um loop do...while para repetir a pergunta ao usuário até ele digitar uma resposta válida.
+
+eça ao usuário para inserir números e use um loop do...while para calcular a média dos números inseridos. O loop deve continuar até que o usuário insira "0", o que sinaliza o fim da entrada de dados.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop do..while</title>
+
+</head>
+<body>
+    <h1>Exercício com Loop do..while</h1>
+
+    <p id="nota"></p>
+    <p id="media"></p>
+
+    <script>
+        function solicitarNota() {
+            let nota;
+            do {
+                nota = parseInt(prompt("Digite uma nota de 1 a 10:"));
+            } while (isNaN(nota) || nota < 1 || nota > 10);
+            
+            document.getElementById('nota').innerText = "Você inseriu uma nota válida: " + nota;
+        }
+
+        function calcularMedia() {
+            let numero;
+            let soma = 0;
+            let quantidade = 0;
+
+            do {
+                numero = parseFloat(prompt("Digite um número (ou 0 para terminar):"));
+                if (numero !== 0) {
+                    soma += numero;
+                    quantidade++;
+                }
+            } while (numero !== 0);
+
+            let media
+            if (quantidade > 0){
+                media = (soma / quantidade)
+            } else{
+                media = 0
+            }
+            document.getElementById('media').innerText = "A média dos números inseridos é: " + media.toFixed(2);
+        }
+
+        solicitarNota()
+        calcularMedia()
+    </script>
+</body>
+</html>

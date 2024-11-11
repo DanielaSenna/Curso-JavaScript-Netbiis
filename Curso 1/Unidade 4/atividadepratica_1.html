@@ -1,0 +1,55 @@
+<!-- Crie 4 funções, uma para cada uma das 4 operações matemáticas. Elas vão receber dois valores e vão retornar o resultado.-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem</title>
+</head>
+<body>
+    <h1 id="resultado"></h1>
+    <h1 id="soma"></h1>
+    <h1 id="subtracao"></h1>
+    <h1 id="divisao"></h1>
+    <h1 id="multiplicacao"></h1>
+
+    <script>
+        
+        // Função de soma usando uma função anônima atribuída a uma variável
+        let fsoma = function(a, b){
+            return a + b;
+        }
+
+        // Função de subtração usando arrow function com bloco de código
+        let fsubtracao = (a, b) => {
+            return a - b;
+        }
+        
+        // Função de multiplicação usando uma arrow function com retorno implícito
+        let fmultiplicacao = (a, b) => a * b;
+        
+        // Função de divisão usando uma declaração de função normal
+        function fdivisao(a, b){
+            return a / b;
+        }
+
+        function operacao(){
+            let n1 = parseFloat(prompt("Digite o primeiro número: "));
+            let n2 = parseFloat(prompt("Digite o segundo número: "));
+
+            let s = fsoma(n1, n2);
+            let sb = fsubtracao(n1, n2);
+            let m = fmultiplicacao(n1, n2);
+            let d = fdivisao(n1, n2);
+
+            document.getElementById("resultado").textContent = "Resultado";
+            document.getElementById("soma").textContent = "A soma é: " + s;
+            document.getElementById("subtracao").textContent = "A subtração é: " + sb;
+            document.getElementById("divisao").textContent = "A divisão é: " + d;
+            document.getElementById("multiplicacao").textContent = "A multiplicação é: " + m;
+        }
+        operacao();
+        
+    </script>
+</body>
+</html>

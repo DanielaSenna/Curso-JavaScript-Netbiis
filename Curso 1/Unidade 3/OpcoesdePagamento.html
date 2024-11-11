@@ -1,0 +1,26 @@
+<!-- 3. Elaborar um programa para uma loja que leia o preço de um produto e informe as duas opções de pagamento: à vista com 10% de desconto ou o valor sem desconto com parcelamento em 2 ou 3 vezes sem juros.-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Opções de Pagamento</title>
+</head>
+<body>
+  <h2>Opções de Pagamento</h2>
+  
+  <script>
+    let precoProduto = parseFloat(prompt("Informe o preço do produto "))
+    
+    const descontoAVista = precoProduto * 0.10;
+    const precoAVista = precoProduto - descontoAVista;
+    const parcela2x = precoProduto / 2;
+    const parcela3x = precoProduto / 3;
+
+    document.write("Preço do Produto: R$ " + precoProduto.toFixed(2));
+    document.write("<br>À Vista com 10% de Desconto: R$ " + precoAVista.toFixed(2));
+    document.write("<br>Parcelado em 2x: R$ " + parcela2x.toFixed(2) + " por mês");
+    document.write("<br>Parcelado em 3x: R$ " + parcela3x.toFixed(2) + " por mês");
+  </script>
+</body>
+</html>

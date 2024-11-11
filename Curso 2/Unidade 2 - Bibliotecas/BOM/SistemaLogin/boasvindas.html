@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <style>
+        /* Estilos básicos para centralizar o conteúdo */
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .welcome-container { text-align: center; }
+        h2 { color: #4CAF50; }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-container">
+        <h2 id="welcomeMessage"></h2>
+        <p>Seja bem-vindo ao sistema!</p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Obtém o nome do usuário do localStorage e exibe a mensagem de boas-vindas
+        const username = localStorage.getItem("username");
+
+        // Verifica se o usuário está logado
+        if (username != null || username.length != 0) {
+            document.getElementById("welcomeMessage").textContent = `Bem-vindo, ${username}!`;
+        } else {
+            // Redireciona para a página de login se o usuário não estiver logado
+            location.assign("login.html"); // window.location.href = 'login.html';
+        }
+            
+        // Função de logout
+        function logout() {
+            // Remove o nome de usuário do localStorage e redireciona para a página de login
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+</html>

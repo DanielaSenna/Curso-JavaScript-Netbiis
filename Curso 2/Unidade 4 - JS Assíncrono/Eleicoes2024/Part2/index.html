@@ -1,0 +1,55 @@
+<!--Vamos agora fazer uma melhoria no nosso sistema. A estrutura e os estilos dessa página melhorada estão no repositório do curso.
+
+Agora, ao invés de termos votos por meio de um botão “Votar”, teremos uma área de urna na nossa página, na qual o usuário digitará o número do candidato e o sistema verificará qual candidato possui aquele número. Também deverá ser adicionado um rodapé na lista de votos com a quantidade de votos brancos e nulos.
+
+É importante dizer que a estrutura do objeto que representa o candidato deverá ser atualizada com a adição do
+número de campanha do candidato.-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação de Candidatos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Simulação de Urna -->
+        <div class="urna-container">
+            <h2>Simulação de Urna</h2>
+            <div class="urna-input-group">
+                <input type="number" id="numero-candidato" placeholder="Número" min="1" />
+                <button class="btn-votar-urna" id="btn-votar">Votar</button>
+            </div>
+            <div class="urna-feedback" id="urna-feedback"></div>
+        </div>
+        <h1>Votação de Candidatos</h1>
+        <ul class="candidatos" id="candidatos">
+            <!-- A lista de candidatos será gerada dinamicamente aqui -->
+            <li>
+                <span class="nome-candidato">Nome</span>
+                <span class="votos-candidato">X votos</span>
+            </li>
+            <li>
+                <span class="nome-candidato">Nome</span>
+                <span class="votos-candidato">X votos</span>
+            </li>
+        </ul>
+
+        <!-- Rodapé com votos brancos e nulos -->
+        <div class="footer">
+            <p>Votos Brancos: <span id="votos-brancos">0</span></p>
+            <p>Votos Nulos: <span id="votos-nulos">0</span></p>
+        </div>
+
+    </div>
+
+    <script src="script_2.js"></script>
+
+</body>
+
+</html>

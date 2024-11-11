@@ -1,0 +1,25 @@
+<!-- Crie uma função que exibe uma mensagem na tela, escolhida pelo usuário, que digitará em um prompt antes da renderização.-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem</title>
+</head>
+<body>
+    <h1 id="resposta"></h1>
+   
+    <script>
+        function solicitarNome() {
+            let mensagem = prompt("Digite uma mensagem");
+            if (mensagem!= null && mensagem != "") {
+                document.getElementById("resposta").textContent = mensagem;
+            } else {
+                document.getElementById("resposta").textContent = "Nenhum nome inserido.";
+            }
+        }
+        solicitarNome();
+
+    </script>
+</body>
+</html>

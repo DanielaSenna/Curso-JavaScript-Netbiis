@@ -1,0 +1,37 @@
+<!--Escreva um script que classifique a idade de uma pessoa como "Criança", "Adolescente", "Adulto" ou "Idoso" com base em faixas etárias predefinidas.-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faixas Etárias</title>
+</head>
+<body>
+    <h3 id="resposta"></h3>
+   
+    <script>
+        function faixaEtaria() {
+            let idade = parseInt(prompt("Digite sua idade: "));
+
+            let classificacao;
+            // Verifica as faixas etárias
+            if (idade >= 0 && idade <= 12) {
+                classificacao = "Criança";
+            } else if (idade >= 13 && idade <= 17) {
+                classificacao = "Adolescente";
+            } else if (idade >= 18 && idade <= 64) {
+                classificacao = "Adulto";
+            } else if (idade >= 65) {
+                classificacao = "Idoso";
+            } else {
+                classificacao = "Idade inválida";
+            }
+            // Exibe o resultado na página
+            document.getElementById("resposta").innerText = "Classificação: " + classificacao;
+
+        }
+        faixaEtaria();
+
+    </script>
+</body>
+</html>

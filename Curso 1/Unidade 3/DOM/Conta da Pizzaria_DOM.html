@@ -1,0 +1,54 @@
+<!-- 2. Escrever um programa para uma pizzaria que leia o valor total de uma conta e quantos clientes vão pagá-la. Calcule e informe o valor a ser pago por cada cliente.-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Divisão da Conta</title>
+</head>
+<body>
+  <h2>Dividir Conta da Pizzaria</h2>
+  <p id="valorTotal"></p>
+  <p id="numeroClientes"></p>
+  <p id="valorPorCliente"></p>  
+    
+
+  <script>
+    let valorTotal = parseFloat(prompt("Informe o valor total da conta: "))
+    let numeroClientes = parseFloat(prompt("Quantos clientes vão pagar? "))
+    const valorPorCliente = valorTotal / numeroClientes;
+    
+    document.getElementById("valorTotal").textContent =  "Valor Total da Conta: R$ " + valorTotal.toFixed(2);
+    document.getElementById("numeroClientes").textContent =  "Quantidade de Clientes: " + numeroClientes;
+    document.getElementById("valorPorCliente").textContent =  "Valor por Cliente: R$ " + valorPorCliente.toFixed(2);
+
+  </script>
+</body>
+</html>
+
+<!--O DOM (Document Object Model) é uma interface de programação que permite acessar e manipular o conteúdo e a estrutura de um documento HTML ou XML usando linguagens de programação como JavaScript. Ele representa a página de forma hierárquica, criando uma estrutura em árvore onde cada elemento, atributo e pedaço de texto no HTML é considerado um nó (node).
+
+Imagine um HTML simples:
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Bem-vindo!</h1>
+    <p id="paragrafo">Esse é um parágrafo.</p>
+  </body>
+</html>
+
+No DOM, ele será representado como:
+
+Document
+ └── html
+      └── body
+           ├── h1
+           └── p (id="paragrafo")
+
+Manipulação do DOM com JavaScript
+Usando JavaScript, é possível modificar o DOM. Por exemplo, para mudar o texto do parágrafo com o id="paragrafo":
+
+document.getElementById("paragrafo").textContent = "Texto alterado!";
+
+O DOM é, portanto, a ponte que permite aos desenvolvedores interagir e dinamizar páginas web com facilidade.
+-->

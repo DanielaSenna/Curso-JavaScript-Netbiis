@@ -1,0 +1,73 @@
+<!--Crie um programa que pergunta ao usuário dois números e pede para ele escolher onde aparecerá a soma entre esses números (Console, Janela ou Documento) e depois que ele preenche, faça conforme o usuário escolheu. Obs: haverá uma função somarExibir(a, b, callback) que fará a soma e a exibição.-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Soma</title>
+</head>
+<body>
+    <h2>Programa de Soma</h2>
+    <p>Digite dois números e escolha onde deseja ver o resultado:</p>
+    
+    <label for="numero1">Número 1:</label>
+    <input type="number" id="numero1"><br><br>
+    
+    <label for="numero2">Número 2:</label>
+    <input type="number" id="numero2"><br><br>
+    
+    <label for="escolha">Escolha onde exibir:</label>
+    <select id="escolha">
+        <option value="console">Console</option>
+        <option value="janela">Janela</option>
+        <option value="documento">Documento</option>
+    </select><br><br>
+    
+    <button onclick="executarSoma()">Somar e Exibir</button>
+    
+    <div id="resultado"></div>
+
+    <script>
+        // Função de soma e exibição com callback
+        function somarExibir(a, b, callback) {
+            const soma = a + b;
+            callback(soma);
+        }
+
+        // Funções de exibição
+        function exibirNoConsole(resultado) {
+            console.log("Resultado da soma:", resultado);
+        }
+
+        function exibirNaJanela(resultado) {
+            alert("Resultado da soma: " + resultado);
+        }
+
+        function exibirNoDocumento(resultado) {
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerText = "Resultado da soma: " + resultado;
+        }
+
+        // Função principal que executa a soma e exibe o resultado conforme a escolha
+        function executarSoma() {
+            // Pega os valores dos inputs e converte para números
+            const numero1 = Number(document.getElementById("numero1").value);
+            const numero2 = Number(document.getElementById("numero2").value);
+            const escolha = document.getElementById("escolha").value;
+
+            // Verifica a escolha do usuário e define o callback correspondente
+            let callbackExibir;
+            if (escolha === "console") {
+                callbackExibir = exibirNoConsole;
+            } else if (escolha === "janela") {
+                callbackExibir = exibirNaJanela;
+            } else if (escolha === "documento") {
+                callbackExibir = exibirNoDocumento;
+            }
+
+            // Chama a função somarExibir com os números e o callback escolhido
+            somarExibir(numero1, numero2, callbackExibir);
+        }
+    </script>
+</body>
+</html>

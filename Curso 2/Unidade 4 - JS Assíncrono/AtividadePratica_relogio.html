@@ -1,0 +1,64 @@
+<!-- Crie uma página de relógio, com data, horas, minutos e segundos atuais que se atualizará automaticamente a cada segundo.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio Atualizado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .relogio {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        .data {
+            font-size: 1.5em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="relogio">
+        <div class="data" id="data"></div>
+    </div>
+
+    <script>
+
+        
+        function atualizarRelogio() {
+            // Obtém a data e hora atuais
+            const agora = new Date();
+
+            const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            }).format(agora);
+
+            // Atualiza o conteúdo dos elementos de data e horário
+            document.getElementById("data").innerText = dataFormatada;
+        }
+        // Atualiza o relógio a cada segundo
+        setInterval(() => {
+            atualizarRelogio()
+        }, 1000)
+
+        // Chama a função imediatamente para mostrar o horário sem atraso
+        atualizarRelogio();
+    </script>
+</body>
+</html>

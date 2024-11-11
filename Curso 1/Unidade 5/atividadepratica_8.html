@@ -1,0 +1,52 @@
+<!--Crie um script que funcione como uma calculadora simples. O usuário deve fornecer dois números e a operação desejada (+, -, *, /). O script deve verificar a operação e realizar o cálculo correspondente.-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Simples</title>
+</head>
+<body>
+  <h2>Calculadora Simples</h2>
+
+  <h3 id="resultado"></h3>
+
+  <script>
+    function calcular() {
+      // Captura os valores dos números e da operação
+      const numero1 = parseFloat(prompt("Primeiro número: "));
+      const numero2 = parseFloat(prompt("Segundo número: "));
+      const operacao = prompt("Operação (+, -, *, /): ");
+
+      // Variável para o resultado
+      let resultado;
+
+      // Realiza o cálculo com base na operação escolhida
+      switch (operacao) {
+        case "+":
+          resultado = numero1 + numero2;
+          break;
+        case "-":
+          resultado = numero1 - numero2;
+          break;
+        case "*":
+          resultado = numero1 * numero2;
+          break;
+        case "/":
+          if (numero2 !== 0) {
+            resultado = numero1 / numero2;
+          } else {
+            resultado = "Erro: divisão por zero";
+          }
+          break;
+        default:
+          resultado = "Operação inválida. Use +, -, * ou /.";
+      }
+
+      // Exibe o resultado na página
+      document.getElementById("resultado").innerText = numero1 + " " + operacao + " " + numero2 + " = " + resultado;
+    }
+    calcular();
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- 4. Escrever um programa que leia as 04 notas de um aluno e calcule a sua média. -->
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calcular Média das Notas</title>
+</head>
+<body>
+  <h2>Calcular Média das Notas</h2>
+
+  <script>
+    let n1 = parseFloat(prompt("Informe a primeira nota: "))
+    let n2 = parseFloat(prompt("Informe a segunda nota: "))
+    let n3 = parseFloat(prompt("Informe a terceira nota: "))
+    let n4 = parseFloat(prompt("Informe a quarta nota: "))
+    const media = (n1 + n2 + n3 + n4) / 4;
+
+    document.write("Nota 1: " + n1.toFixed(2) + "<br>Nota 2: " + n2.toFixed(2) + "<br>Nota 3: " + n3.toFixed(2) + "<br>Nota 4: " + n4.toFixed(2));
+    document.write("<br>Média do Aluno: " + media.toFixed(2));
+  </script>
+</body>
+</html>

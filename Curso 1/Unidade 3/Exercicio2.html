@@ -1,0 +1,35 @@
+<!--
+Criar uma página com prompts que perguntem ao usuário o nome, a idade, o email e o telefone do usuário, em
+seguida, ele deve escrever na tela todas essas informações. Também deve ser criado um objeto com as informações
+colocadas pelo usuário e colocado no console.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Aluno</title>
+</head>
+<body>
+    <script>
+        let nome = prompt("Digite seu nome: ");
+        let idade = prompt("Digite sua idade: ");
+        let email = prompt("Digite seu email: ");
+        let telefone = prompt("Digite seu telefone: ");
+
+        document.write(nome + "<br>");
+        document.write(idade + "<br>");
+        document.write(email + "<br>");
+        document.write(telefone + "<br>");
+
+        let aluno = {
+            nome: nome,
+            idade: idade,
+            email: email,
+            telefone: telefone
+        }
+
+        console.log(aluno);
+    </script>
+</body>
+</html>

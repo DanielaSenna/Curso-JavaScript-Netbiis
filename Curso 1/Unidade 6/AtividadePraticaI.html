@@ -1,0 +1,34 @@
+<!--Peça ao usuário para inserir um número N e use um loop while para somar todos os números de 1 a N..-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador e Soma de Números</title>
+  
+</head>
+<body>
+    <h1>Contador e Soma de Números</h1>
+
+    <p id="contagem"></p>
+    <p id="soma"></p>
+
+    <script>
+        function executar() {
+            let N = parseInt(prompt("Digite um número N:"));
+            let soma = 0;
+            let contador = 1;
+            let resultado = "";
+
+            while (contador <= N) {
+                resultado += contador + " ";
+                soma += contador;
+                contador++;
+            }
+            document.getElementById('contagem').innerText = resultado;
+            document.getElementById('soma').innerText = "A soma dos números de 1 a " + N + " é: " + soma;
+        }
+        executar();
+    </script>
+</body>
+</html>
