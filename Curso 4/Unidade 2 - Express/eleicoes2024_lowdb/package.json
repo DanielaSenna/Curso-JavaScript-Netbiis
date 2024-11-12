@@ -1,0 +1,22 @@
+{
+  "name": "eleicoes2024",
+  "version": "1.0.0",
+  "main": "AtividadePratica_eleicoes2024.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index_eleicoes2024.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "lowdb": "^7.0.1"
+  }
+}

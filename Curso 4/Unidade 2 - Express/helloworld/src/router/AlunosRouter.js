@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { AlunosValidator } from "../validators/AlunoValidator.js";
 import * as AlunosController from "../controller/AlunosController.js"
 
 const router = Router();
@@ -15,6 +14,7 @@ router.put('/:id', AlunosController.atualizarAluno)
 router.delete('/:id', AlunosController.deletarAluno)
 
 export default router;
+
 /*
 router.get('/', (reg, res) => {
     res.send('Página de Alunos');

@@ -1,0 +1,12 @@
+{
+  "candidatos": [
+    {
+      "id": 2,
+      "nome": "Candidato D",
+      "partido": "Partido D",
+      "numero": 4,
+      "foto": "fulano.jpg",
+      "votos": 12
+    }
+  ]
+}
