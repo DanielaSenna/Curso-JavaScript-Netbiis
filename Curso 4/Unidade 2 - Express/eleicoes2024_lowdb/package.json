@@ -1,7 +1,7 @@
 {
   "name": "eleicoes2024",
   "version": "1.0.0",
-  "main": "AtividadePratica_eleicoes2024.js",
+  "main": "src/index_eleicoes2024.js",
   "type": "module",
   "scripts": {
     "start": "nodemon src/index_eleicoes2024.js",

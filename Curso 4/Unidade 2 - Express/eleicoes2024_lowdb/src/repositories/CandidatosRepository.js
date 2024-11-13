@@ -25,13 +25,19 @@ export function criaCandidato(candidato) {
 // ATUALIZA OS DADOS DE UM CANDIDATO
 export function atualizaCandidato(candidato) {
     const index = db.data.candidatos.findIndex(a => a.id == candidato.id);
+    if (index == -1) {
+        throw new Error("Candidato Não Encontrado");
+    }
     db.data.candidatos[index] = candidato;
     db.write();
 }
 
 // EXCLUI UM CANDIDATO
 export function deleteCandidatos(id) {
-    const index = db.data.candidatos.findIndex(a => a.id == id);
+    const index = db.data.candidatos.findIndex(candidato => candidato.id == id);
+    if (index == -1) {
+        throw new Error("Candidato Não Encontrado");
+    }
     db.data.candidatos.splice(index, 1);
     db.write();
 }
