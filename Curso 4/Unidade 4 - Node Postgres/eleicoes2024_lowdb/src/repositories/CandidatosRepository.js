@@ -13,8 +13,9 @@ export async function buscaCandidatoPorId(id) {
 }
 
 // BUSCA UM CANDIDATO PELO NUMERO DA CAMPANHA 
-export function buscaCandidatoPorNumero(numero) {
-    return db.data.candidatos.find(candidato => candidato.numero == numero);
+export async function buscaCandidatoPorNumero(numero) {
+    const result = await pool.query('SELECT * FROM candidato WHERE numero = $1', [numero]);
+    return result.rows[0];
 }
 
 
@@ -57,4 +58,43 @@ export async function atualizaCandidato(id, candidato) {
 // EXCLUI UM CANDIDATO
 export async function deleteCandidatos(id) {
     await pool.query('DELETE FROM candidato WHERE id = $1', [id]);
+}
+
+// ADICIONA CANDIDADO A ELEICAO
+export async function adicionarCandidatoEleicao(idCandidato, idEleicao) {
+    try {
+        // Verifica se o candidato com o mesmo nome ou número já existe
+        const { rows } = await pool.query(
+            'SELECT * FROM candidato_eleicao WHERE candidato_id = $1 AND eleicao_id = $2',
+            [idCandidato, idEleicao]
+        );
+       
+        // Se já existir, retorna uma mensagem sem lançar erro
+        if (rows.length > 0) {
+            return { message: 'O candidato já está cadastrado na eleição' };
+        }
+
+        // Se não existir, insere o novo candidato
+        const result = await pool.query(
+            'INSERT INTO candidato_eleicao (candidato_id, eleicao_id) VALUES ($1, $2) RETURNING *',
+            [idCandidato, idEleicao]
+        );
+
+        return result.rows[0];
+    } catch (error) {
+        // Lança um erro em caso de problemas com a consulta ou inserção
+        throw new Error(`Erro ao criar candidato: ${error.message}`);
+    }
+}
+
+// REMOVE CANDIDADO DA ELEICAO
+export async function removerCandidatoEleicao(idCandidato, idEleicao) {
+    
+    try {
+        const res = await pool.query('DELETE FROM candidato_eleicao WHERE candidato_id = $1 AND eleicao_id = $2', [idCandidato, idEleicao]);
+        return res.rowCount > 0; // Retorna true se a exclusão foi bem-sucedida
+    } catch (error) {
+        console.error('Erro ao remover candidato da eleição:', error);
+        throw error;
+    }
 }

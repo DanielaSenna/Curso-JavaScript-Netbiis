@@ -1,6 +1,4 @@
-import { EleicaoValidator } from "../validators/EleicaoValidator.js";
 import * as EleicaoService from "../services/EleicaoService.js"
-import Joi from "joi";
 
 // PEGA A LISTA DE ELEIÇÃO
 export async function listarEleicao(req, res){
@@ -9,48 +7,32 @@ export async function listarEleicao(req, res){
 }
 
 // BUSCA UM ELEIÇÃO PELO ID
-export async function buscaEleicaoPorId(req, res) {
-    const id = parseInt(req.params.id);
-    if (isNaN(id) || id <= 0) {
-        return res.status(400).send("ID Inválido");
-    }
-
+export async function buscaEleicaoPorId(req, res, next) {
     const eleicao = await EleicaoService.buscaEleicaoPorId(req.params.id);
-    if (eleicao) {
-        res.send(eleicao);
-    } else {
-        res.status(404).send("Eleitor Não Encontrado");
+    if (!eleicao) {    
+        next(new Error("Eleição Não Encontrado"));
+        return;
     }
+    res.send(eleicao);
     
 }
 
 // CRIA UMA NOVA ELEIÇÃO
 export async function criaEleicao(req, res) {
     const body = req.body;
-    const validacao = EleicaoValidator.validate(body);
     
-    if(validacao.error){
-        return res.status(400).send({message: validacao.error.details[0].message})
-    } 
     const result = await EleicaoService.criaEleicao(body)
     res.status(201).send(result);
 }
 
 // ATUALIZA OS DADOS DE UMA ELEIÇÃO
-export async function atualizaEleicao(req, res) {
-    const id = parseInt(req.params.id);
-    if (id <= 0 || isNaN(id)) {
-        return res.status(400).send("ID Inválido")
-    } 
-
-    const body = req.body
-    const validacao = EleicaoValidator.validate(body);
-    if(validacao.error){
-        return res.status(400).send({message: validacao.error.details[0].message});
-    } 
-
+export async function atualizaEleicao(req, res, next) {
     try {
         const result = await EleicaoService.atualizaEleicao(req.params.id, body)
+        if (!result) {    
+            next(new Error("Eleição Não Encontrado"));
+            return;
+        }
         res.send(result);
     } catch (error) {
         res.status(404).send({ message: error.message }); 
@@ -58,16 +40,21 @@ export async function atualizaEleicao(req, res) {
 }
 
 // EXCLUI UMA ELEIÇÃO
-export async function deleteEleicao(req, res) {
-    const id = parseInt(req.params.id);
-    if (id <= 0 || isNaN(id)) {
-        return res.status(400).send("ID Inválido")
-    }
-
+export async function deleteEleicao(req, res, next) {
     try {
-        await EleicaoService.deleteEleicao(id);
+        const result = await EleicaoService.deleteEleicao(req.params.id);
+        if (!result) {    
+            next(new Error("Eleição Não Encontrado"));
+            return;
+        }
         res.send('Eleição Excluída com Sucesso')
     } catch (error) {
         res.status(404).send(error.message); 
     }
+}
+
+// RESUMO ELEICAO
+export async function resumoEleicao(req, res) {
+    const result = await EleicaoService.resumoEleicao(req.params.id);
+    res.send(result);
 }

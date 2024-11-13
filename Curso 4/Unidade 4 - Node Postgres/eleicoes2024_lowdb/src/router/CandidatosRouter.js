@@ -1,5 +1,7 @@
 import { Router } from "express";
 import * as CandidatosController from "../controller/CandidatosController.js"
+import { validateCandidato } from '../middlewares/validateCandidato.js';
+import { ValidarIdMiddleware } from '../middlewares/IdValidator.js';
 
 const router = Router();
 
@@ -7,19 +9,25 @@ const router = Router();
 router.get('/', CandidatosController.listarCandidatos)
 
 // BUSCA UM CANDIDATO PELO ID
-router.get('/:id', CandidatosController.buscaCandidatoPorId)
+router.get('/:id', ValidarIdMiddleware, CandidatosController.buscaCandidatoPorId)
 
 // BUSCA UM CANDIDATO PELO NUMERO DA CAMPANHA 
 router.get('/numero', CandidatosController.buscaCandidatoPorNumero)
 
 // CRIA UM NOVO CANDIDATO
-router.post('/', CandidatosController.criaCandidato)
+router.post('/', validateCandidato, CandidatosController.criaCandidato)
 
 // ATUALIZA OS DADOS DE UM CANDIDATO
-router.put('/:id', CandidatosController.atualizaCandidato)
+router.put('/:id', ValidarIdMiddleware, CandidatosController.atualizaCandidato)
 
 // EXCLUI UM CANDIDATO
-router.delete('/:id', CandidatosController.deleteCandidatos)
+router.delete('/:id', ValidarIdMiddleware, CandidatosController.deleteCandidatos)
+
+// ADICIONA CANDIDADO A ELEICAO
+router.post('/adicionar-candidato', CandidatosController.adicionarCandidatoEleicao)
+
+// REMOVE CANDIDADO DA ELEICAO
+router.delete('/', CandidatosController.removerCandidatoEleicao);
 
 export default router;
 

@@ -1,6 +1,4 @@
-import { EleitorValidator } from "../validators/EleitorValidator.js";
 import * as EleitorService from "../services/EleitorService.js"
-import Joi from "joi";
 
 // PEGA A LISTA DE ELEITOR
 export async function listarEleitor(req, res){
@@ -9,48 +7,33 @@ export async function listarEleitor(req, res){
 }
 
 // BUSCA UM ELEITOR PELO ID
-export async function buscaEleitorPorId(req, res) {
-    const id = parseInt(req.params.id);
-    if (isNaN(id) || id <= 0) {
-        return res.status(400).send("ID Inválido");
-    }
-
+export async function buscaEleitorPorId(req, res, next) {
     const eleitor = await EleitorService.buscaEleitorPorId(req.params.id);
-    if (eleitor) {
-        res.send(eleitor);
-    } else {
-        res.status(404).send("Eleitor Não Encontrado");
+    if (!eleitor) {    
+        next(new Error("Eleitor Não Encontrado"));
+        return;
     }
+    res.send(eleitor);
     
 }
 
 // CRIA UM NOVO ELEITOR
 export async function criaEleitor(req, res) {
     const body = req.body;
-    const validacao = EleitorValidator.validate(body);
     
-    if(validacao.error){
-        return res.status(400).send({message: validacao.error.details[0].message})
-    } 
     const result = await EleitorService.criaEleitor(body)
     res.status(201).send(result);
 }
 
 // ATUALIZA OS DADOS DE UM ELEITOR
-export async function atualizaEleitor(req, res) {
-    const id = parseInt(req.params.id);
-    if (id <= 0 || isNaN(id)) {
-        return res.status(400).send("ID Inválido")
-    } 
-
-    const body = req.body
-    const validacao = EleitorValidator.validate(body);
-    if(validacao.error){
-        return res.status(400).send({message: validacao.error.details[0].message});
-    } 
-
+export async function atualizaEleitor(req, res, next) {
+    const body = req.body    
     try {
         const result = await EleitorService.atualizaEleitor(req.params.id, body)
+        if (!result) {    
+            next(new Error("Eleitor Não Encontrado"));
+            return;
+        }
         res.send(result);
     } catch (error) {
         res.status(404).send({ message: error.message }); 
@@ -58,14 +41,13 @@ export async function atualizaEleitor(req, res) {
 }
 
 // EXCLUI UM ELEITOR
-export async function deleteEleitor(req, res) {
-    const id = parseInt(req.params.id);
-    if (id <= 0 || isNaN(id)) {
-        return res.status(400).send("ID Inválido")
-    }
-
+export async function deleteEleitor(req, res, next) {
     try {
-        await EleitorService.deleteEleitor(id);
+        const result = await EleitorService.deleteEleitor(req.params.id);
+        if (!result) {    
+            next(new Error("Eleitor Não Encontrado"));
+            return;
+        }
         res.send('Eleitor Excluído com Sucesso')
     } catch (error) {
         res.status(404).send(error.message); 

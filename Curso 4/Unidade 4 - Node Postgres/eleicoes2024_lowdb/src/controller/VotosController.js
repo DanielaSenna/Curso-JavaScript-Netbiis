@@ -1,17 +1,25 @@
 import * as votosService from "../services/VotosService.js"
-import votoSchema from "../validators/VotosValidator.js"
+
+export async function listarVotos(req, res){
+    const votos = await votosService.listarVotos();
+    res.send(votos);
+}
 
 export async function inserirVoto(req, res) {
     const body = req.body;
-    const validarBody = votoSchema.validate(body);
-    if (validarBody.error) {
-        res.status(400).send({message: validarBody.error.details[0].message});
-        return;
+    
+    try {
+        const result = await votosService.inserirVoto(body);
+        if (!result) {
+            res.status(400).send({message: 'Eleitor já votou'});
+            return;
+        }
+        res.send(result);
+    } catch (error) {
+        if (error.message === 'Candidato não encontrado') {
+            res.status(400).send({message: 'Número de candidato inválido'});
+        } else {
+            res.status(500).send({message: 'Erro no sistema'});
+        }
     }
-    const result = await votosService.inserirVoto(body);
-    if (!result) {
-        res.status(400).send({message: 'Eleitor já votou'});
-        return;
-    }
-    res.send(result);
 }

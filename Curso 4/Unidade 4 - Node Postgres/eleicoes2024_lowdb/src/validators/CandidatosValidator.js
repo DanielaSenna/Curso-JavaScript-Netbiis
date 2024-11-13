@@ -6,3 +6,4 @@ export const CandidatosValidator = Joi.object({
     partido: Joi.string().required()
 })
 
+

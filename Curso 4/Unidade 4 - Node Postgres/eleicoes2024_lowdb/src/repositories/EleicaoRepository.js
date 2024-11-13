@@ -30,7 +30,7 @@ export async function criaEleicao(eleicao) {
 
         // Se não existir, insere o novo eleitor
         const result = await pool.query(
-            'INSERT INTO eleicao (nome, data, descricao) VALUES ($1, NOW(), $3) RETURNING *',
+            'INSERT INTO eleicao (nome, data, descricao) VALUES ($1, NOW(), $2) RETURNING *',
             [eleicao.nome, eleicao.descricao]
         );
 
@@ -42,9 +42,9 @@ export async function criaEleicao(eleicao) {
 }
 
 // ATUALIZA OS DADOS DE UMA ELEIÇÃO
-export async function atualizaEleicao(id, eleitor) {
+export async function atualizaEleicao(id, eleicao) {
     const result = await pool.query(
-        'UPDATE eleicao SET nome = $1, descricao = $2 WHERE id = $4 RETURNING *', 
+        'UPDATE eleicao SET nome = $1, descricao = $2 WHERE id = $3 RETURNING *', 
         [eleicao.nome, eleicao.descricao, id]);
     return result.rows[0];
 }
@@ -52,4 +52,10 @@ export async function atualizaEleicao(id, eleitor) {
 // EXCLUI UMA ELEIÇÃO
 export async function deleteEleicao(id) {
     await pool.query('DELETE FROM eleicao WHERE id = $1', [id]);
+}
+
+// RESUMO ELEICAO
+export async function resumoEleicao(id) {
+    const result = await pool.query("SELECT * FROM vw_apuracao_final WHERE eleicao_id = $1", [id]);
+    return result.rows;
 }

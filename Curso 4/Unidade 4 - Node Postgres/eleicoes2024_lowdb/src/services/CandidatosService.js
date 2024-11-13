@@ -33,3 +33,19 @@ export async function atualizaCandidato(id, candidato) {
 export async function deleteCandidatos(id) {
     await CandidatosRepository.deleteCandidatos(id);
 }
+
+// ADICIONA CANDIDADO A ELEICAO
+export async function adicionarCandidatoEleicao(candidatoId, eleicaoId) {
+    const result = await CandidatosRepository.adicionarCandidatoEleicao(candidatoId, eleicaoId);
+    return result;
+}
+
+// REMOVE CANDIDADO DA ELEICAO
+export async function removerCandidatoEleicao(candidatoId, eleicaoId) {
+    const candidatoRemovido = await CandidatosRepository.removerCandidatoEleicao(candidatoId, eleicaoId);
+    if (!candidatoRemovido) {
+        throw new Error('Falha ao remover candidato da eleição');
+    }
+    return candidatoRemovido;
+}
+
