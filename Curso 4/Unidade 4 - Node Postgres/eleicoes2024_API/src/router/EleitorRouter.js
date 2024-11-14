@@ -4,11 +4,16 @@ import { validateEleitor } from '../middlewares/validateEleitor.js';
 import { ValidarIdMiddleware } from '../middlewares/IdValidator.js';
 import { validateLogin } from '../middlewares/validateLogin.js'
 import { validateEleitorUpdate } from '../middlewares/validateEleitorUpdate.js';
+import { EleitorAuthMiddleware } from "../middlewares/AuthMiddlewares.js"
+import { AdminAuth } from '../middlewares/AdminAuth.js';
 
 const router = Router();
 
 // PEGA A LISTA DE ELEITOR
-router.get('/', EleitorController.listarEleitor)
+router.get('/', EleitorAuthMiddleware, EleitorController.listarEleitor)
+
+// BUSCA UM ELEITOR PELO ID
+router.get('/info', EleitorAuthMiddleware, EleitorController.obterMinhasInformacoes)
 
 // BUSCA UM ELEITOR PELO ID
 router.get('/:id', ValidarIdMiddleware, EleitorController.buscaEleitorPorId)

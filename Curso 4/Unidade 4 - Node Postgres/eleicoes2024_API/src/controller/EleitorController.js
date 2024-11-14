@@ -20,7 +20,11 @@ export async function buscaEleitorPorId(req, res, next) {
 // CRIA UM NOVO ELEITOR
 export async function criaEleitor(req, res, next) {
     try {
-        const result = await EleitorService.criaEleitor(req.body);
+        const eleitorData = {
+            ...req.body,
+            perfil: req.body.perfil || 2 // Define o perfil padrão como 2 se não fornecido
+        };
+        const result = await EleitorService.criaEleitor(eleitorData);
         res.status(201).send(result);
     } catch (error) {
         next(error);
@@ -68,4 +72,14 @@ export async function atualizaSenhaEleitor(req, res, next) {
     } catch (error) {
         next(error);
     }
+}
+
+export async function obterMinhasInformacoes(req, res, next) {
+    try {
+        const result = await EleitorService.buscaEleitorPorId(req.params.id);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
+    }
+    
 }

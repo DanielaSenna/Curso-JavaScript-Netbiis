@@ -21,8 +21,8 @@ export async function obterEleitorPorCpf(cpf) {
 // CRIA UM NOVO ELEITOR
 export async function criaEleitor(eleitor) {
     const result = await pool.query(
-        'INSERT INTO eleitor (nome, cpf, senha) VALUES ($1, $2, $3) RETURNING *',
-        [eleitor.nome, eleitor.cpf, eleitor.senha]
+        'INSERT INTO eleitor (nome, cpf, senha, perfil) VALUES ($1, $2, $3, $4) RETURNING *',
+        [eleitor.nome, eleitor.cpf, eleitor.senha, eleitor.perfil || 2]
     );
 
     return result.rows[0];

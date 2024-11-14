@@ -1,6 +1,9 @@
 import * as EleitorRepository from "../repositories/EleitorRepository.js"
 import AppError from "../errors/AppError.js";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+
 
 const {compare, hash} = bcrypt;
 
@@ -63,24 +66,24 @@ export async function login(loginReq) {
     if(!senhaCorreta){
         throw new AppError('CPF ou Senha Incorretos', 400); 
     }
-    return {id: eleitor.id, nome: eleitor.nome, cpf: eleitor.cpf};
-    //const token = gerarToken({id: eleitor.id, nome: eleitor.nome, cpf: eleitor.cpf});
-    //return {token};
+   
+    const token = gerarToken({id: eleitor.id, nome: eleitor.nome, cpf: eleitor.cpf});
+    return {token};
 }
 
 function gerarToken(data){
-    return jwt.sifn(data, process.env.JWT_SECRET, {expiresIn: '1h'});
+    return jwt.sign(data, process.env.JWT_SECRET, {expiresIn: '1h'});
 }
 
 export async function atualizaSenhaEleitor(id, senhaAntiga, novaSenha) {
     const senhaAtual = await EleitorRepository.buscaSenhaEleitorPorId(id);
     if (!senhaAtual) {
-        throw new AppError('Id de Eleitor Não Encontrado', 400);
+        throw new AppError('Id de Eleitor Não Encontrado', 401);
     }
 
     const senhaCorreta = await bcrypt.compare(senhaAntiga, senhaAtual);
     if (!senhaCorreta) {
-        throw new AppError('Senha antiga incorreta', 400);
+        throw new AppError('Senha antiga incorreta', 401);
     }
 
     const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
