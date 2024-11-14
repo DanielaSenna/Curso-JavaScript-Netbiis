@@ -12,7 +12,7 @@ router.get('/', CandidatosController.listarCandidatos)
 router.get('/:id', ValidarIdMiddleware, CandidatosController.buscaCandidatoPorId)
 
 // BUSCA UM CANDIDATO PELO NUMERO DA CAMPANHA 
-router.get('/numero', CandidatosController.buscaCandidatoPorNumero)
+router.get('/', CandidatosController.buscaCandidatoPorNumero)
 
 // CRIA UM NOVO CANDIDATO
 router.post('/', validateCandidato, CandidatosController.criaCandidato)
