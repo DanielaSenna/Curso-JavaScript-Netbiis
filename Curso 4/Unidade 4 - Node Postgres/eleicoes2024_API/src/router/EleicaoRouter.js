@@ -20,6 +20,7 @@ router.put('/:id', ValidarIdMiddleware, EleicaoController.atualizaEleicao)
 // EXCLUI UMA ELEIÇÃO
 router.delete('/:id', ValidarIdMiddleware, EleicaoController.deleteEleicao)
 
-router.get('/:id/resumo', EleicaoController.resumoEleicao)
+// RESUMO DA ELEIÇÃO
+router.get('/:id/resumo', ValidarIdMiddleware, EleicaoController.resumoEleicao)
 
 export default router;

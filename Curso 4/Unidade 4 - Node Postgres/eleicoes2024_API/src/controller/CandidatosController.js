@@ -8,72 +8,51 @@ export async function listarCandidatos(req, res){
 
 // BUSCA UM CANDIDATO PELO ID
 export async function buscaCandidatoPorId(req, res, next) {
-    const candidato = await CandidatosService.buscaCandidatoPorId(req.params.id);
-    if (!candidato) {    
-        next(new Error("Candidato Não Encontrado"));
-        return;
+    try {
+        const result = await CandidatosService.buscaCandidatoPorId(req.params.id);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
     }
-    res.send(candidato);
-    
 }
 
 // BUSCA UM CANDIDATO PELO NUMERO DA CAMPANHA 
-export function buscaCandidatoPorNumero(req, res) {
-    const numero = parseInt(req.query.numero);
-    console.log(req.query.numero)
-    if (isNaN(numero) || numero <= 0) {
-        return res.status(400).send("Número de Campanha Inválido");
-    }
-
+export async function buscaCandidatoPorNumero(req, res, next) {
     try {
-        // Busca o candidato pelo número da campanha
-        const candidato = CandidatosService.buscaCandidatoPorNumero(req.query.numero);
-        
-        // Retorna o candidato se encontrado, caso contrário retorna erro 404
-        if (candidato) {
-            res.send(candidato);
-        } else {
-            res.status(404).send("Candidato não encontrado");
-        }
+        const result = await CandidatosService.buscaCandidatoPorNumero(req.query.numero);
+        res.status(201).send(result);
     } catch (error) {
-        res.status(404).send({ message: error.message }); 
+        next(error);
     }
 }
 
 // CRIA UM NOVO CANDIDATO
-export async function criaCandidato(req, res) {
-    const body = req.body;
-    
-    const result = await CandidatosService.criaCandidato(body)
-    res.status(201).send(result);
+export async function criaCandidato(req, res, next) {
+    try {
+        const result = await CandidatosService.criaCandidato(req.body);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
+    }
 }
 
 // ATUALIZA OS DADOS DE UM CANDIDATO
 export async function atualizaCandidato(req, res, next) {
-    const body = req.body
     try {
-        const result = await CandidatosService.atualizaCandidato(req.params.id, body)
-        if (!result) {    
-            next(new Error("Candidato Não Encontrado"));
-            return;
-        }
-        res.send(result);
+        const result = await CandidatosService.atualizaCandidato(req.params.id, req.body)
+        res.status(200).send(result);
     } catch (error) {
-        res.status(404).send({ message: error.message }); 
+        next(error);
     }
 }
 
 // EXCLUI UM CANDIDATO
 export async function deleteCandidatos(req, res, next) {
     try {
-        const result = await CandidatosService.deleteCandidatos(req.params.id);
-        if (!result) {    
-            next(new Error("Candidato Não Encontrado"));
-            return;
-        }
-        res.send('Candidato Excluído com Sucesso')
+        await CandidatosService.deleteCandidatos(req.params.id);
+        res.status(200).send({ message: "Eleitor Excluído com Sucesso"});
     } catch (error) {
-        res.status(404).send(error.message); 
+        next(error);
     }
 }
 
@@ -87,20 +66,13 @@ export async function adicionarCandidatoEleicao(req, res, next) {
     }
 }
 
-
 // REMOVE CANDIDADO DA ELEICAO
-export async function removerCandidatoEleicao(req, res) {
-    const { candidato_id, eleicao_id } = req.body;
-
+export async function removerCandidatoEleicao(req, res, next) {
     try {
-        const result = await CandidatosService.removerCandidatoEleicao(candidato_id, eleicao_id);
-        if (result) {
-            res.send({ message: 'Candidato removido da eleição' });
-        } else {
-            res.status(404).send({ message: 'Candidato ou eleição não encontrados' });
-        }
+        await CandidatosService.removerCandidatoEleicao(req.body.candidato_id, req.body.eleicao_id)
+        res.status(200).send({ message: "Candidato Excluído com Sucesso da Eleição"});
     } catch (error) {
-        res.status(500).send({ message: 'Erro ao remover candidato da eleição' });
+        next(error);
     }
 }
 

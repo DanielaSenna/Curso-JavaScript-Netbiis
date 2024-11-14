@@ -8,48 +8,64 @@ export async function listarEleitor(req, res){
 
 // BUSCA UM ELEITOR PELO ID
 export async function buscaEleitorPorId(req, res, next) {
-    const eleitor = await EleitorService.buscaEleitorPorId(req.params.id);
-    if (!eleitor) {    
-        next(new Error("Eleitor Não Encontrado"));
-        return;
+    try {
+        const result = await EleitorService.buscaEleitorPorId(req.params.id);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
     }
-    res.send(eleitor);
     
 }
 
 // CRIA UM NOVO ELEITOR
-export async function criaEleitor(req, res) {
-    const body = req.body;
-    
-    const result = await EleitorService.criaEleitor(body)
-    res.status(201).send(result);
+export async function criaEleitor(req, res, next) {
+    try {
+        const result = await EleitorService.criaEleitor(req.body);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
+    }
 }
 
 // ATUALIZA OS DADOS DE UM ELEITOR
 export async function atualizaEleitor(req, res, next) {
-    const body = req.body    
     try {
-        const result = await EleitorService.atualizaEleitor(req.params.id, body)
-        if (!result) {    
-            next(new Error("Eleitor Não Encontrado"));
-            return;
-        }
-        res.send(result);
+        const { nome, cpf } = req.body;
+        const result = await EleitorService.atualizaEleitor(req.params.id, { nome, cpf })
+        res.status(200).send(result);
     } catch (error) {
-        res.status(404).send({ message: error.message }); 
+        next(error);
     }
 }
 
 // EXCLUI UM ELEITOR
 export async function deleteEleitor(req, res, next) {
     try {
-        const result = await EleitorService.deleteEleitor(req.params.id);
-        if (!result) {    
-            next(new Error("Eleitor Não Encontrado"));
-            return;
-        }
-        res.send('Eleitor Excluído com Sucesso')
+        await EleitorService.deleteEleitor(req.params.id);
+        res.status(200).send({ message: "Eleitor excluído com sucesso"});
     } catch (error) {
-        res.status(404).send(error.message); 
+        next(error);
+    }
+}
+
+export async function login(req, res, next) {
+    try {
+        const result = await EleitorService.login(req.body);
+        res.status(200).send(result);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export async function atualizaSenhaEleitor(req, res, next) {
+    try {
+        const id = req.params.id;
+        const { senhaAntiga, novaSenha } = req.body;
+
+        const result = await EleitorService.atualizaSenhaEleitor(id, senhaAntiga, novaSenha);
+
+        res.status(200).json({ message: 'Senha atualizada com sucesso', eleitor: result });
+    } catch (error) {
+        next(error);
     }
 }

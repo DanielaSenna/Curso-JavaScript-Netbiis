@@ -8,53 +8,50 @@ export async function listarEleicao(req, res){
 
 // BUSCA UM ELEIÇÃO PELO ID
 export async function buscaEleicaoPorId(req, res, next) {
-    const eleicao = await EleicaoService.buscaEleicaoPorId(req.params.id);
-    if (!eleicao) {    
-        next(new Error("Eleição Não Encontrado"));
-        return;
+    try {
+        const result = await EleicaoService.buscaEleicaoPorId(req.params.id);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
     }
-    res.send(eleicao);
-    
 }
 
 // CRIA UMA NOVA ELEIÇÃO
-export async function criaEleicao(req, res) {
-    const body = req.body;
-    
-    const result = await EleicaoService.criaEleicao(body)
-    res.status(201).send(result);
+export async function criaEleicao(req, res, next) {
+    try {
+        const result = await EleicaoService.criaEleicao(req.body);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
+    }
 }
 
 // ATUALIZA OS DADOS DE UMA ELEIÇÃO
 export async function atualizaEleicao(req, res, next) {
     try {
-        const result = await EleicaoService.atualizaEleicao(req.params.id, body)
-        if (!result) {    
-            next(new Error("Eleição Não Encontrado"));
-            return;
-        }
-        res.send(result);
+        const result = await EleicaoService.atualizaEleicao(req.params.id, req.body)
+        res.status(200).send(result);
     } catch (error) {
-        res.status(404).send({ message: error.message }); 
+        next(error);
     }
 }
 
 // EXCLUI UMA ELEIÇÃO
 export async function deleteEleicao(req, res, next) {
     try {
-        const result = await EleicaoService.deleteEleicao(req.params.id);
-        if (!result) {    
-            next(new Error("Eleição Não Encontrado"));
-            return;
-        }
-        res.send('Eleição Excluída com Sucesso')
+        await EleicaoService.deleteEleicao(req.params.id);
+        res.status(200).send({ message: "Eleição excluída com sucesso"});
     } catch (error) {
-        res.status(404).send(error.message); 
+        next(error);
     }
 }
 
 // RESUMO ELEICAO
-export async function resumoEleicao(req, res) {
-    const result = await EleicaoService.resumoEleicao(req.params.id);
-    res.send(result);
+export async function resumoEleicao(req, res, next) {
+    try {
+        const result = await EleicaoService.resumoEleicao(req.params.id);
+        res.status(201).send(result);
+    } catch (error) {
+        next(error);
+    }
 }

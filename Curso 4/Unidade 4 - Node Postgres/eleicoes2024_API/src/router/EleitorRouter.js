@@ -2,6 +2,8 @@ import { Router } from "express";
 import * as EleitorController from "../controller/EleitorController.js"
 import { validateEleitor } from '../middlewares/validateEleitor.js';
 import { ValidarIdMiddleware } from '../middlewares/IdValidator.js';
+import { validateLogin } from '../middlewares/validateLogin.js'
+import { validateEleitorUpdate } from '../middlewares/validateEleitorUpdate.js';
 
 const router = Router();
 
@@ -15,9 +17,15 @@ router.get('/:id', ValidarIdMiddleware, EleitorController.buscaEleitorPorId)
 router.post('/', validateEleitor, EleitorController.criaEleitor)
 
 // ATUALIZA OS DADOS DE UM ELEITOR
-router.put('/:id', ValidarIdMiddleware, EleitorController.atualizaEleitor)
+router.put('/:id', ValidarIdMiddleware, validateEleitorUpdate, EleitorController.atualizaEleitor)
 
 // EXCLUI UM ELEITOR
 router.delete('/:id', ValidarIdMiddleware, EleitorController.deleteEleitor)
+
+// LOGIN
+router.post('/login', validateLogin, EleitorController.login)
+
+// ATUALIZAR SENHA
+router.put('/:id/senha', ValidarIdMiddleware, EleitorController.atualizaSenhaEleitor);
 
 export default router;

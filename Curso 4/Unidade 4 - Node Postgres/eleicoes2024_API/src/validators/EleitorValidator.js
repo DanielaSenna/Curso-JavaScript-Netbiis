@@ -2,6 +2,11 @@ import Joi from "joi";
 
 export const EleitorValidator = Joi.object({
     nome: Joi.string().required(),
-    cpf: Joi.number().required(),
-    senha: Joi.number().required()
+    cpf: Joi.string().pattern(/^\d{11}$/).required(),
+    senha: Joi.string().required()
+})
+
+export const atualizaEleitorSchema = Joi.object({
+    nome: Joi.string().required(),
+    cpf: Joi.string().pattern(/^\d{11}$/).required()
 })

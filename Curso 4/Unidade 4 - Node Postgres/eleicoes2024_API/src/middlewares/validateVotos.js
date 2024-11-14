@@ -1,13 +1,11 @@
 import { VotosValidator } from '../validators/VotosValidator.js';
+import AppError from '../errors/AppError.js';
 
 export function validateVotos(req, res, next) {
     const { error } = VotosValidator.validate(req.body);
 
     if (error) {
-        // Retorna um erro se a validação falhar
-        return res.status(400).json({ message: error.details[0].message });
+        next(new AppError(error.details[0].message, 400))
     }
-    
-    // Se a validação for bem-sucedida, passa para o próximo middleware ou controller
-    next();
+    return next()
 }
